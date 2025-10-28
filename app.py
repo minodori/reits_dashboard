@@ -84,7 +84,7 @@ fig1 = px.bar(
     labels={"준공_월": "준공 시기", "세대수": "세대수"},
     height=400,
 )
-st.plotly_chart(fig1, width="stretch")
+st.plotly_chart(fig1, config={"responsive": True, "displayModeBar": False})
 
 # 차트 2: 분기별 준공 물량
 st.subheader("📊 분기별 준공 물량")
@@ -101,7 +101,7 @@ fig2 = px.bar(
     color="세대수",
     color_continuous_scale="Reds",
 )
-st.plotly_chart(fig2, use_container_width=True)
+st.plotly_chart(fig2, config={"responsive": True, "displayModeBar": False})
 
 # 차트 3: 공공 vs 민간
 col1, col2 = st.columns(2)
@@ -113,7 +113,7 @@ with col1:
     fig3 = px.pie(
         형태별, values="세대수", names="형태", title="분양 형태별 비율", hole=0.4
     )
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, config={"responsive": True, "displayModeBar": False})
 
 with col2:
     st.subheader("🏗️ 시공사별 세대수")
@@ -133,7 +133,7 @@ with col2:
         color="세대수",
         color_continuous_scale="Blues",
     )
-    st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(fig4, config={"responsive": True, "displayModeBar": False})
 
 # 전체 데이터 테이블
 st.subheader("📋 전체 데이터")
