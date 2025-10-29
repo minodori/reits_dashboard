@@ -94,6 +94,32 @@ def show_login():
             else:
                 st.error("❌ 사용자명 또는 비밀번호가 올바르지 않습니다.")
                 st.session_state.login_attempted = True
+
+                # Secrets 설정 확인 및 안내
+                try:
+                    if not hasattr(st.secrets, "users") and "users" not in st.secrets:
+                        st.warning("⚠️ **Secrets가 설정되지 않았습니다!**")
+                        st.info(
+                            """
+                        **Streamlit Cloud에서 Secrets 설정 방법:**
+                        1. [share.streamlit.io](https://share.streamlit.io)에 접속
+                        2. 앱 선택 → **Settings** → **Secrets** 탭
+                        3. 다음 형식을 입력:
+                        ```toml
+                        [users.user1]
+                        username = "minodori"
+                        password = "Smh815312"
+                        
+                        [users.user2]
+                        username = "guest"
+                        password = "guest"
+                        ```
+                        4. **Save** 클릭
+                        """
+                        )
+                except:
+                    pass
+
                 # 디버깅 정보 (개발 환경)
                 with st.expander("🔍 디버깅 정보 (개발자용)", expanded=False):
                     try:
